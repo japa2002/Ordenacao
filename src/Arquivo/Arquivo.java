@@ -1,3 +1,4 @@
+package Arquivo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.List;
@@ -45,7 +46,7 @@ public class Arquivo {
 	}
 
 	public void setCaminho(String caminho) {
-		this.caminho = caminho;
+		this.caminho = caminho; 
 	}
 
 	public List<Integer> lerArquivo(BufferedWriter bufferedWriter){
