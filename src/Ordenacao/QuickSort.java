@@ -1,8 +1,9 @@
+package Ordenacao;
 import java.util.List;
 
-public class MergeSort extends Ordenacao{
+public class QuickSort extends Ordenacao{
 
-	public MergeSort(int id, String nome) {
+	public QuickSort(int id, String nome) {
 		super(id, nome);
 	}
 	
