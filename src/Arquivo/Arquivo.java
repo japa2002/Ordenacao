@@ -42,7 +42,7 @@ public class Arquivo {
 	}
 
 	public String getCaminho() {
-		return caminho;
+		return caminho; 
 	}
 
 	public void setCaminho(String caminho) {
