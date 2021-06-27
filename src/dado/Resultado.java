@@ -2,19 +2,17 @@ package dado;
 
 public class Resultado {
 	
-	private int idResultado;
-	private String nome;
-	
-	public int getIdResultado() {
-		return idResultado;
+	private int tempoExecucao;
+
+	public Resultado(int tempoExecucao) {
+		this.tempoExecucao = tempoExecucao;
 	}
-	public void setIdResultado(int idResultado) {
-		this.idResultado = idResultado;
+
+	public int getTempoExecucao() {
+		return tempoExecucao;
 	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
+
+	public void setTempoExecucao(int tempoExecucao) {
+		this.tempoExecucao = tempoExecucao;
 	}
 }

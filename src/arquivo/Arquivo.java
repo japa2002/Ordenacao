@@ -1,6 +1,7 @@
 package arquivo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,21 +30,21 @@ public class Arquivo {
 	 *
 	 * @author Breno
 	 * @return lnumeros
+	 * @throws IOException 
 	 */
-	public List<String> lerArquivo(){
+	public List<String> lerArquivo() throws IOException{
 		List<String> lNumero = new ArrayList<>();
-		BufferedReader file = abrirArquivoLeitura();
 		String numero;
-		
+		BufferedReader file = null;
+
 		try {
+			file = abrirArquivoLeitura();
 			numero = file.readLine();
 			while(numero != null) {
 				lNumero.add(numero);
 				numero = file.readLine();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
+		}finally {
 			fecharArquivoLeitura(file);
 		}
 		return lNumero;
@@ -77,16 +78,12 @@ public class Arquivo {
 	 *
 	 * @author Breno
 	 * @return file
+	 * @throws FileNotFoundException 
 	 */
-	private BufferedReader abrirArquivoLeitura() {
-		try {
-			BufferedReader file = null;
-			file = new BufferedReader(new FileReader(caminho));
-			return file;
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+	private BufferedReader abrirArquivoLeitura() throws FileNotFoundException {
+		BufferedReader file = null;
+		file = new BufferedReader(new FileReader(caminho));
+		return file;
 	}
 	
 	/**
