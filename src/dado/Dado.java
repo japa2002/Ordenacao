@@ -1,5 +1,8 @@
 package dado;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import arquivo.Arquivo;
@@ -38,9 +41,19 @@ public class Dado {
 		this.resultado = resultado;
 	}
 	
-	public List<String> listarDadosArquivo(String caminho){
-		arquivo.setCaminho(caminho);
-		return arquivo.lerArquivo();
+	public List<String> listarDadosArquivo(String caminho) throws IOException{
+		
+		LocalTime inicioTempo = LocalTime.now();
+		
+		Arquivo arquivo = new Arquivo(caminho);
+		setArquivo(arquivo);
+		List<String> lResultado = arquivo.lerArquivo();
+		
+		LocalTime finalTempo = LocalTime.now();
+		Resultado resultado = new Resultado(finalTempo.getNano()-inicioTempo.getNano());
+		setResultado(resultado);
+		
+		return lResultado;
 	}
 	
 	public List<String> ordenar(List<String> lista){

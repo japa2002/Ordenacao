@@ -4,20 +4,27 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dado.Dado;
+
 import javax.swing.JTextField;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import java.awt.Color;
 import javax.swing.JComboBox;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 public class TelaOrdenacao extends JFrame {
 
 	private static final long serialVersionUID = 1090740499685551266L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField tfUrl;
 	private JTextField tfCampoPesquisaLista;
 	private JTextField tfIndiceBusca;
 	private JTextField tfTempo;
@@ -32,6 +39,7 @@ public class TelaOrdenacao extends JFrame {
 				try {
 					TelaOrdenacao frame = new TelaOrdenacao();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,6 +51,7 @@ public class TelaOrdenacao extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaOrdenacao() {
+		setBackground(Color.DARK_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 300, 750, 600);
 		contentPane = new JPanel();
@@ -55,21 +64,21 @@ public class TelaOrdenacao extends JFrame {
 		lblUrl.setBounds(10, 11, 46, 14);
 		contentPane.add(lblUrl);
 		
-		textField = new JTextField();
-		textField.setBounds(38, 8, 686, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfUrl = new JTextField();
+		tfUrl.setBounds(38, 8, 686, 20);
+		contentPane.add(tfUrl);
+		tfUrl.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.setBounds(10, 512, 714, 23);
 		contentPane.add(btnBuscar);
 		
 		JButton btnOrdenar = new JButton("Ordenar");
+		btnOrdenar.setBounds(10, 478, 714, 23);
 		btnOrdenar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnOrdenar.setBounds(10, 478, 714, 23);
 		contentPane.add(btnOrdenar);
 		
 		JComboBox cbTipoPesquisa = new JComboBox();
@@ -102,7 +111,7 @@ public class TelaOrdenacao extends JFrame {
 		contentPane.add(lblCampoPesquisaLista);
 		
 		tfIndiceBusca = new JTextField();
-		tfIndiceBusca.setEnabled(false);
+		tfIndiceBusca.setEditable(false);
 		tfIndiceBusca.setBounds(355, 72, 74, 20);
 		contentPane.add(tfIndiceBusca);
 		tfIndiceBusca.setColumns(10);
@@ -116,27 +125,40 @@ public class TelaOrdenacao extends JFrame {
 		contentPane.add(lblTempo);
 		
 		tfTempo = new JTextField();
-		tfTempo.setEnabled(false);
+		tfTempo.setEditable(false);
 		tfTempo.setBounds(407, 40, 150, 20);
 		contentPane.add(tfTempo);
 		tfTempo.setColumns(10);
 		
-		JList lConteudo = new JList();
-		lConteudo.setBounds(50, 431, 634, -302);
-		contentPane.add(lConteudo);
-		
 		tfStatus = new JTextField();
-		tfStatus.setEnabled(false);
+		tfStatus.setEditable(false);
 		tfStatus.setBounds(678, 39, 46, 20);
 		contentPane.add(tfStatus);
 		tfStatus.setColumns(10);
 		
+		JList lConteudo = new JList();
+		lConteudo.setBounds(10, 104, 714, 329);
+		contentPane.add(lConteudo);
+		
 		JButton btnListar = new JButton("Listar");
+		btnListar.setBounds(10, 444, 714, 23);
 		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					Dado dado = new Dado();
+					List<String> lista = dado.listarDadosArquivo(tfUrl.getText());
+					lConteudo.setListData(lista.toArray());
+					int tempo = dado.getResultado().getTempoExecucao();
+					tfTempo.setText(String.valueOf(tempo)+" ns");
+					tfStatus.setBackground(Color.GREEN);
+					tfStatus.setText("OK");
+				} catch (Exception e2) {
+					tfStatus.setBackground(Color.RED);
+					tfStatus.setText("FALHA");
+				}
 			}
 		});
-		btnListar.setBounds(10, 444, 714, 23);
 		contentPane.add(btnListar);
+		
 	}
 }
