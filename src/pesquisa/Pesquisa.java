@@ -24,7 +24,7 @@ public abstract class Pesquisa {
 		return 0;
 	}
 	
-	public Pesquisa(int idPesquisa, String nome) {
+	protected Pesquisa(int idPesquisa, String nome) {
 		this.idPesquisa = idPesquisa;
 		this.nome = nome;
 	}

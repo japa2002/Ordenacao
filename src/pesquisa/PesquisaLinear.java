@@ -10,8 +10,6 @@ public class PesquisaLinear extends Pesquisa{
 	
 	@Override
 	public int pesquisar(List<String> lista, String conteudo) {
-		
-		
-		return lista;
+		return 0;
 	}
 }
