@@ -9,43 +9,10 @@ import java.util.List;
 
 public class Arquivo {
 
-	private int idArquivo;
-	private String nome;
-	private String tipoArquivo;
 	private String caminho;
-	
-	public Arquivo() {
-	}
-	
-	public Arquivo(int idArquivo, String nome, String tipoArquivo, String caminho) {
-		this.idArquivo = idArquivo;
-		this.nome = nome;
-		this.tipoArquivo = tipoArquivo;
+
+	public Arquivo(String caminho) {
 		this.caminho = caminho;
-	}
-
-	public int getIdArquivo() {
-		return idArquivo;
-	}
-
-	public void setIdArquivo(int idArquivo) {
-		this.idArquivo = idArquivo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getTipoArquivo() {
-		return tipoArquivo;
-	}
-
-	public void setTipoArquivo(String tipoArquivo) {
-		this.tipoArquivo = tipoArquivo;
 	}
 
 	public String getCaminho() {
@@ -65,7 +32,7 @@ public class Arquivo {
 	 */
 	public List<String> lerArquivo(){
 		List<String> lNumero = new ArrayList<>();
-		BufferedReader file =  abrirArquivoLeitura();
+		BufferedReader file = abrirArquivoLeitura();
 		String numero;
 		
 		try {
@@ -103,20 +70,6 @@ public class Arquivo {
 		}
 	}
 	
-	/**
-	 * 
-	 * Fechar o arquivo de leitura 
-	 *
-	 * @author Breno
-	 * @param file
-	 */
-	public void fecharArquivoLeitura(BufferedReader file) {
-		try {
-			file.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	/**
 	 * 
@@ -125,10 +78,44 @@ public class Arquivo {
 	 * @author Breno
 	 * @return file
 	 */
-	public BufferedReader abrirArquivoLeitura() {
+	private BufferedReader abrirArquivoLeitura() {
 		try {
 			BufferedReader file = null;
 			file = new BufferedReader(new FileReader(caminho));
+			return file;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * Fechar o arquivo de leitura 
+	 *
+	 * @author Breno
+	 * @param file
+	 */
+	private void fecharArquivoLeitura(BufferedReader file) {
+		try {
+			file.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * 
+	 * Abrir arquivo para escrita
+	 *
+	 * @author Breno
+	 * @return file
+	 */
+	private BufferedWriter abrirArquivoEscrita() {
+		try{
+			BufferedWriter file = null;
+			file = new BufferedWriter(new FileWriter(caminho));
 			return file;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -143,29 +130,11 @@ public class Arquivo {
 	 * @author Breno
 	 * @param file
 	 */
-	public void fecharArquivoEscrita(BufferedWriter file) {
+	private void fecharArquivoEscrita(BufferedWriter file) {
 		try {
 			file.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * 
-	 * Abrir arquivo para escrita
-	 *
-	 * @author Breno
-	 * @return file
-	 */
-	public BufferedWriter abrirArquivoEscrita() {
-		try{
-			BufferedWriter file = null;
-			file = new BufferedWriter(new FileWriter(caminho));
-			return file;
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 }

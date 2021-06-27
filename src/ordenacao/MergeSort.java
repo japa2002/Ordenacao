@@ -8,7 +8,7 @@ public class MergeSort extends Ordenacao{
 	}
 	
 	@Override
-	public List<Integer> ordenar(List<Integer> listaOrdenacao) {
+	public List<String> ordenar(List<String> listaOrdenacao) {
 		return null;
 	}
 }

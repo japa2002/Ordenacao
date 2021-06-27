@@ -27,7 +27,7 @@ public abstract class Ordenacao {
 		setNome(nome);
 	}
 
-	public List<Integer> ordenar(List<Integer> listaOrdenacao) {
+	public List<String> ordenar(List<String> listaOrdenacao) {
 		return listaOrdenacao;
 	}
 }
