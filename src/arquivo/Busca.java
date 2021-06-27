@@ -1,4 +1,4 @@
-package Arquivo;
+package arquivo;
 
 public class Busca {
 
