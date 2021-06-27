@@ -22,7 +22,7 @@ public abstract class Ordenacao {
 		this.nome = nome;
 	}
 
-	public Ordenacao(int id, String nome) {
+	protected Ordenacao(int id, String nome) {
 		setId(id);
 		setNome(nome);
 	}
